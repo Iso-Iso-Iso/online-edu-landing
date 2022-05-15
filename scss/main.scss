@@ -1,0 +1,631 @@
+@import "./nullstyle";
+@import "./mixins";
+@import "./variables";
+@import "./fonts";
+
+* {
+  font-family: $primary-ff;
+  font-size: $standart-fs;
+  line-height: 150%;
+  color: $secondary-color-light;
+  @media screen and(max-width:480px) {
+    // font-size: $standart-fs_mobile;
+  }
+}
+
+a {
+  display: inline-block;
+}
+body,
+html {
+  overflow-x: hidden;
+}
+
+.mb-big {
+  margin-bottom: 25px;
+}
+.mb-medium {
+  margin-bottom: 20px;
+}
+.mb-small {
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 1150px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.primary-title,
+.title,
+.small-title {
+  font-weight: $title-fw;
+  color: $secondary-color;
+}
+
+.primary-title {
+  font-size: $primary-title-fs;
+  @media screen and(max-width:480px) {
+    font-size: $primary-title-fs_mobile;
+  }
+}
+.sub-title {
+  text-align: center;
+}
+.title {
+  text-align: center;
+  font-size: $title-fs;
+  @media screen and(max-width:480px) {
+    font-size: $title-fs_mobile;
+  }
+}
+.small-title {
+  font-size: $small-title-fs;
+  &_blue {
+    color: $primary-color;
+  }
+  @media screen and(max-width:480px) {
+    font-size: $small-title-fs_mobile;
+  }
+}
+.button {
+  @include transition;
+  font-size: $standart-fs;
+  padding: 15px 25px;
+  background: $primary-color;
+  color: $contrast-color;
+  border-radius: 5px;
+  &:hover {
+    background: $primary-color-dark;
+  }
+  @media screen and(max-width:425px) {
+    padding: 10px 20px;
+  }
+  &_mobile {
+    display: none;
+    @media screen and(max-width:425px) {
+      display: block;
+    }
+  }
+}
+
+.header {
+  position: relative;
+}
+
+.link {
+  @include transition;
+  cursor: pointer;
+  color: $secondary-color;
+  &:hover {
+    color: $primary-color;
+  }
+}
+.navigation {
+  @include flex;
+}
+.navbar {
+  position: relative;
+  background: $contrast-color;
+  z-index: 3;
+  padding: 30px 15px;
+  @include flex(space-between);
+  &__link {
+    margin: 0 20px;
+  }
+  &__buttons {
+    @include flex;
+  }
+  @media screen and(max-width:768px) {
+    padding: 15px;
+  }
+}
+._pc {
+  @media screen and(max-width:768px) {
+    display: none;
+  }
+}
+._mobile {
+  @media screen and(min-width:769px) {
+    display: none;
+  }
+}
+.burger {
+  @include flex;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  &_active {
+    .burger__line {
+      background: rgba(255, 255, 255, 0);
+      &::after,
+      &::before {
+        top: 50%;
+      }
+      &::after {
+        transform: rotate(45deg);
+      }
+      &::before {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &__line {
+    width: 100%;
+    height: 3px;
+    background: $secondary-color;
+
+    &::after,
+    &::before {
+      @include transition;
+      content: "";
+      position: absolute;
+      background: $secondary-color;
+      left: 0;
+      height: 3px;
+      width: 100%;
+    }
+    &::after {
+      top: 0;
+    }
+    &::before {
+      bottom: 0;
+    }
+  }
+}
+.burger-menu {
+  @include transition;
+  position: absolute;
+  width: 100%;
+  top: -100%;
+  transform: translateY(-100%);
+  left: 0;
+  z-index: 1;
+  background: $contrast-color;
+  padding: 15px;
+  a {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .navigation {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 15px;
+  }
+  .navbar__buttons {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  &_active {
+    top: 100%;
+    transform: none;
+  }
+}
+
+.img {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.main-screen {
+  background: url("../img/main-screen.png");
+  height: 740px;
+  position: relative;
+  @include flex;
+  @media screen and(max-width:768px) {
+    height: 560px;
+  }
+  &__body {
+    padding-bottom: 100px;
+    text-align: center;
+    @include flex($flex-direction: column);
+    width: 100%;
+    height: 100%;
+    background: $secondary-color-opacity;
+    color: $contrast-color;
+    .primary-title,
+    p {
+      color: white;
+    }
+    @media screen and(max-width:768px) {
+      padding: 0;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.about-us {
+  background: $contrast-color;
+  box-shadow: 0px 11px 35px rgba(0, 0, 0, 0.08);
+  padding: 50px 80px;
+  border-radius: 10px;
+  transform: translateY(-50%);
+  margin-bottom: 30px;
+  @include flex(space-between);
+  @media screen and(max-width:768px) {
+    transform: none;
+    justify-content: center;
+    padding: 20px;
+  }
+  @media screen and(max-width:650px) {
+    flex-direction: column;
+  }
+
+  &__item {
+    @include flex;
+    margin-right: 15px;
+    width: max-content;
+    margin-bottom: 30px;
+  }
+
+  &__logo {
+    width: 90px;
+    height: 90px;
+    margin-right: 25px;
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+  }
+
+  &__number {
+    font-size: 26px;
+    font-weight: $title-fw;
+  }
+
+  &__link {
+    @extend .link;
+    color: $primary-color;
+    &:hover {
+      color: $primary-color-dark;
+    }
+  }
+}
+
+.find-course {
+  @include flex($align-items: stretch);
+  margin-bottom: 130px;
+  @media screen and(max-width:768px) {
+    flex-direction: column-reverse;
+    &__img {
+      height: 300px;
+    }
+  }
+  .title {
+    text-align: left;
+  }
+  &__content {
+    max-width: 50%;
+    width: 100%;
+    margin-right: 20px;
+    p {
+      flex: 1 1 100%;
+    }
+    @media screen and(max-width:768px) {
+      max-width: 100%;
+    }
+  }
+  &__img {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+}
+.container {
+}
+.title {
+}
+.button {
+}
+
+.flex-space {
+  @include flex(space-between);
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  img {
+    object-fit: contain;
+  }
+}
+.how-work {
+  margin-bottom: 130px;
+  &__card {
+    width: 270px;
+    text-align: center;
+    @include flex($flex-direction: column);
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    justify-items: center;
+    gap: 20px;
+    @media screen and(max-width:1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and(max-width:768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.all-course {
+  background: $primary-color-light;
+  padding: 60px 0;
+}
+.all-course {
+  margin-bottom: 130px;
+  @include flex($flex-direction: column);
+  &__flex {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 320px;
+    margin: 0 20px;
+    background: $contrast-color;
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+
+  &__img {
+    border-radius: 5px;
+    overflow: hidden;
+    height: 200px;
+    width: 100%;
+  }
+
+  &__panel {
+    width: 100%;
+    @include flex(space-between);
+  }
+
+  &__panel-item {
+    @include flex($align-items: flex-end);
+  }
+
+  &__panel-icon {
+    margin-right: 20px;
+    height: 25px;
+    width: 25px;
+    @include flex;
+  }
+
+  &__line {
+    background: $secondary-color-light;
+    opacity: 0.2;
+    width: 100%;
+    height: 2px;
+  }
+
+  &__titles {
+    width: 100%;
+    @include flex(space-between);
+  }
+}
+.our-mentor {
+  margin-bottom: 130px;
+  &__flex {
+    @include flex;
+    @media screen and(max-width:1024px) {
+      flex-direction: column;
+    }
+  }
+
+  &__card {
+    margin: 0 20px 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 340px;
+    box-shadow: 0px 11px 55px rgba(0, 0, 0, 0.13);
+    @media screen and(max-width:1024px) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__img {
+    height: 340px;
+  }
+
+  &__card-content {
+    padding: 25px;
+  }
+
+  &__card-info {
+    @include flex(flex-start);
+  }
+
+  &__info-item {
+    @include flex;
+    margin-right: 20px;
+  }
+
+  &__card-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+.statistics {
+  margin-bottom: 130px;
+  background: $primary-color-light;
+  padding: 50px 0;
+  @media screen and(max-width:425px) {
+    .flex-space {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &__item {
+    @media screen and(max-width:425px) {
+      @include flex($flex-direction: column);
+    }
+  }
+}
+
+.reviews {
+  position: relative;
+  margin-bottom: 130px;
+  &__card {
+    box-shadow: 0px 13px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 15px;
+  }
+
+  &__card-text {
+  }
+  &__slider-nav {
+    @include flex(flex-end);
+  }
+  &__person {
+    @include flex(flex-start);
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  &__person-data {
+  }
+}
+
+.swiper {
+  position: relative;
+  overflow: visible;
+  overflow-x: hidden;
+  padding: 20px;
+}
+.button-prev,
+.button-next {
+  cursor: pointer;
+  background: $primary-color;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 100%;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $contrast-color;
+  }
+  @media screen and(max-width:768px) {
+    display: none;
+  }
+}
+.button-prev {
+  margin-right: 20px;
+}
+
+.subscribe-us {
+  @include flex($flex-direction: column);
+  background: $primary-color;
+  margin-bottom: 130px;
+  border-radius: 10px;
+  padding: 50px 30px;
+  p,
+  h2 {
+    color: $contrast-color;
+  }
+  &__input-warpper {
+    @include flex;
+    padding: 5px 10px;
+    width: max-content;
+    border-radius: 5px;
+    background-color: $contrast-color;
+    @media screen and(max-width:768px) {
+      padding: 5px;
+    }
+  }
+  .input {
+    margin-right: 5px;
+    max-width: 350px;
+    width: 100%;
+    font-size: $small-title-fs;
+    @media screen and(max-width:425px) {
+      max-width: 300px;
+    }
+    @media screen and(max-width:320px) {
+      width: 200px;
+    }
+  }
+  .button {
+    @media screen and(max-width:425px) {
+      display: none;
+    }
+    &_mobile {
+      fill: $contrast-color;
+      padding: 0;
+      width: 35px;
+      padding: 5px;
+      height: 35px;
+      @media screen and(max-width:425px) {
+        @include flex;
+      }
+    }
+  }
+}
+.footer {
+  width: 100%;
+  background: $primary-color-light;
+  padding: 39px 0;
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+  &__wrapper {
+    @include flex(space-between, flex-start, $flex-wrap: wrap);
+  }
+  &__item {
+    max-width: 360px;
+  }
+  &__social {
+    @include flex(flex-start);
+  }
+  &__social-item {
+    background: $contrast-color;
+    padding: 10px;
+    @include flex;
+    border-radius: 5px;
+    margin-right: 10px;
+    height: min-content;
+    fill: $primary-color;
+  }
+  &__link {
+    display: block;
+    @extend .mb-small;
+  }
+  &__contact-info {
+    @include flex(flex-start);
+    @extend .mb-small;
+    svg {
+      margin-right: 10px;
+    }
+  }
+}
